@@ -4,8 +4,12 @@ import logo from '../../imagens/logo.svg'
 function Logo () {
     return(
         <div className='logo'>
-            <img src={logo} alt='logo'></img>
-            <p><strong>Livrary</strong>Books</p>
+            <img
+                src={logo}
+                alt='logo'
+                className='logo-img'
+            ></img>
+            <p><strong>Alura</strong>Books</p>
         </div>
     )
 }
