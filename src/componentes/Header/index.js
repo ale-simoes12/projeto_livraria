@@ -7,6 +7,7 @@ import InconesHeader from '../OpcoesHeader'
 // import Logo from './componentes/Logo';
 // import InconesHeader from './componentes/InconesHeader';
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 const HeaderContainer = styled.header`
     background-color: #FFF;
@@ -18,7 +19,10 @@ const HeaderContainer = styled.header`
 function Header () {
     return(
         <HeaderContainer>
+            <Link to="/"> 
             <Logo/>
+            </Link>
+            
             <InconesHeader/>
             <OpcoesHeader/>
         </HeaderContainer>
