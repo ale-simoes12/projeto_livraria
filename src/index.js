@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import { createGlobalStyle } from 'styled-components'
 import {BrowserRouter , Routes , Route } from 'react-router-dom'
 import Header from './componentes/Header'
+import Cat from './rotas/cat';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -37,6 +38,7 @@ root.render(
     <Routes>
       <Route path="/favoritos" element={<Favoritos/>} />
       <Route path="/" element={<App />} />
+      <Route path="/categorias" element={<Cat/>} />
     </Routes>
     </BrowserRouter>
   </React.StrictMode>

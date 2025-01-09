@@ -36,7 +36,6 @@ const ResultadoContainer = styled.div`
   text-align: center; /* Alinha o texto no centro de cada célula */
   margin-bottom: 20px;
 `;
-
 const Resultado = styled.div`
   display: contents; /* Permite que os itens sigam o layout do grid */
   p {
@@ -90,7 +89,7 @@ function Pesquisa() {
                 placeholder="Escreva sua próxima leitura"
                 onBlur={evento => {
                     const textoDigitado = evento.target.value
-                    const resultadoPesquisa = livros.filter( livros => livros.nome.includes(textoDigitado) )
+                    const resultadoPesquisa = livros.filter( livros => livros.titulo.includes(textoDigitado) )
                     setLivrosPesquisados(resultadoPesquisa)
                 }}
             />
@@ -108,7 +107,7 @@ function Pesquisa() {
                 <Resultado>
                     {/* <img src={livros.src}/> */}
                     <p>{livros.id}</p>
-                    <p>{livros.nome}</p>
+                    <p>{livros.titulo}</p>
                     <p>{livros.autor}</p>
                     <p>{livros.editora}</p>
                 </Resultado>
