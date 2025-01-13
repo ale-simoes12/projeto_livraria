@@ -1,5 +1,7 @@
+import { useEffect, useState } from 'react';
 import styled from 'styled-components'
-import Pesquisa from '../componentes/Pesquisa';
+import { getFavoritos } from '../servicos/favoritos';
+
 
 const AppContainer = styled.div`
     width: 100vw;
@@ -8,16 +10,46 @@ const AppContainer = styled.div`
 
    
 `
-function favoritos() {
+
+
+
+
+
+
+function Favoritos() {
+    const [favoritos,setFavoritos] = useState([])
+    
+
+    async function fetchFavoritos() {
+        const favoritos_api  = await getFavoritos()
+        setFavoritos(favoritos_api)
+        
+    }
+
+    useEffect(() => {
+        fetchFavoritos() 
+     },[])
+
+
+
+
+
     return (
     <AppContainer>
-        <Pesquisa/>
+       
+       {favoritos.length > 0 ? (
+                favoritos.map((favorito, index) => (
+                    <p key={index}>{favorito.titulo}</p> // Adicionando uma chave única
+                    
+                ))
+            ) : (
+                <p>Nenhum favorito encontrado.</p>
+            )}
+
     </AppContainer>
     
-    
-   
 
   );
 }
 
-export default favoritos
+export default Favoritos

@@ -11,16 +11,9 @@ const AppContainer = styled.div`
 function Cat() {
     return (
     <AppContainer>
-
       <Categorias/>
-        
-   
-
     </AppContainer>
-    
-    
-   
-
+  
   );
 }
 
