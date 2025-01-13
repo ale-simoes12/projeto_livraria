@@ -1,8 +1,8 @@
 import Input from '../Input'
 import styled from 'styled-components'
 import { useState } from 'react'
-// import { livros } from './dadosPesquisa'
 import { getLivros } from '../../servicos/livros'
+import { postFavorito } from '../../servicos/favoritos'
 import { useEffect } from 'react'
 
 const PesquisaContainer = styled.section`
@@ -64,8 +64,21 @@ const P = styled.h2`
   margin: 0; /* Remove margens padrão */
   word-spacing: 10px; /* Espaçamento entre palavras */
 `;
+const BotaoFavorito = styled.button`
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
 
-
+  &:hover {
+    background-color: #218838;
+  }
+`;
 
 function Pesquisa() {
     const [ livrosPesquisados, setLivrosPesquisados ] = useState([])
@@ -80,6 +93,13 @@ function Pesquisa() {
         const livros_api = await getLivros()
         setLivros(livros_api)
     }
+
+
+    async function insertFavorito (id){
+      await postFavorito(id)    
+  }
+
+
 
     return (
         <PesquisaContainer>
@@ -106,10 +126,12 @@ function Pesquisa() {
                <ResultadoContainer>  
                 <Resultado>
                     {/* <img src={livros.src}/> */}
-                    <p>{livros.id}</p>
                     <p>{livros.titulo}</p>
                     <p>{livros.autor}</p>
                     <p>{livros.editora}</p>
+                    <BotaoFavorito onClick={() => insertFavorito(livros.id)}>
+              Adicionar aos Favoritos
+            </BotaoFavorito>
                 </Resultado>
                 </ResultadoContainer>  
             )) }

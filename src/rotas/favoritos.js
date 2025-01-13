@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { getFavoritos } from '../servicos/favoritos';
+import { getFavoritos , deleteFavorito  } from '../servicos/favoritos';
 
 // Estilo para o container principal
 const AppContainer = styled.div`
   width: 100vw;
-  height: 100vh;
   background-image: linear-gradient(90deg, #002F52 35%, #326589);
   display: flex;
   justify-content: center;
@@ -52,6 +51,21 @@ const Resultado = styled.div`
     box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
   }
 `;
+const BotaoFavorito = styled.button`
+  background-color:rgb(167, 40, 40);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color:rgb(197, 126, 126);
+  }
+`;
 
 function Favoritos() {
   const [favoritos, setFavoritos] = useState([]);
@@ -60,6 +74,11 @@ function Favoritos() {
     const favoritos_api = await getFavoritos();
     setFavoritos(favoritos_api);
   }
+
+  async function deletarLivro (id){
+    await deleteFavorito(id)    
+}
+
 
   useEffect(() => {
     fetchFavoritos();
@@ -73,6 +92,7 @@ function Favoritos() {
           <Resultado >
             {/* Exibindo apenas o nome do livro */}
             <p>{favorito.titulo}</p>
+            <BotaoFavorito onClick={() => deletarLivro(favorito.id)}>Deletar Favorito</BotaoFavorito>
           </Resultado>
         ))}
       </ResultadoContainer>
