@@ -35,6 +35,8 @@ const ResultadoContainer = styled.div`
   gap: 10px; /* Espaçamento entre as colunas */
   text-align: center; /* Alinha o texto no centro de cada célula */
   margin-bottom: 20px;
+ 
+
 `;
 const Resultado = styled.div`
   display: contents; /* Permite que os itens sigam o layout do grid */
@@ -115,10 +117,11 @@ function Pesquisa() {
             />
                     
                     <ResultadoContainer>
-                    <P>ID</P>
+            
                     <P>Nome</P>
                     <P>Autor</P>
                     <P>Editora</P>
+                    <P>Favoritar</P>
                     </ResultadoContainer>
                     
                    
